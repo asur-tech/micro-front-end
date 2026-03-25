@@ -9,6 +9,7 @@ export default defineConfig({
     federation({
       name: "policy",
       filename: "remoteEntry.js",
+      bundleAllCSS: true,
       exposes: {
         "./PolicyDetail": "./src/routes/policy-detail",
         "./PolicyWidget": "./src/routes/policy-widget",

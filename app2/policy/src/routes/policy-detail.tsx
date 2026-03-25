@@ -42,7 +42,7 @@ export default function PolicyDetail() {
         title={`Policy ${policy.policyId}`}
         subtitle={policy.holderName}
       />
-      <Card style={{ maxWidth: "42rem" }}>
+      <Card className="max-w-2xl">
         <CardHeader>
           <CardTitle>Policy Details</CardTitle>
         </CardHeader>

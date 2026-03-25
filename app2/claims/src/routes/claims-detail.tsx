@@ -35,7 +35,7 @@ export default function ClaimsDetail() {
   return (
     <div>
       <PageHeader title="Claims" subtitle={`Policy ${policyId}`} />
-      <div className="space-y-6" style={{ maxWidth: "42rem" }}>
+      <div className="max-w-2xl space-y-6">
         {claims.map((claim, i) => (
           <div key={claim.id}>
             {i > 0 && <hr className="mb-6" />}

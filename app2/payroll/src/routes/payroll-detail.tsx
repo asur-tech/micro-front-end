@@ -35,7 +35,7 @@ export default function PayrollDetail() {
   return (
     <div>
       <PageHeader title="Payroll Records" subtitle={`Policy ${policyId}`} />
-      <div className="space-y-6" style={{ maxWidth: "42rem" }}>
+      <div className="max-w-2xl space-y-6">
         {records.map((record, i) => (
           <div key={record.id}>
             {i > 0 && <hr className="mb-6" />}

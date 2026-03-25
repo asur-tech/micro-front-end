@@ -9,6 +9,7 @@ export default defineConfig({
     federation({
       name: "claims",
       filename: "remoteEntry.js",
+      bundleAllCSS: true,
       exposes: {
         "./ClaimsDetail": "./src/routes/claims-detail",
         "./ClaimsWidget": "./src/routes/claims-widget",

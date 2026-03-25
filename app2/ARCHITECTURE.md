@@ -1051,11 +1051,13 @@ Browse the full catalog at [ui.shadcn.com](https://ui.shadcn.com/docs/components
 
 ## 16. Known Limitations
 
-### Remote CSS in the host
+### Remote CSS in the host — solved with `bundleAllCSS`
 
-When a remote component is loaded via Module Federation, its JavaScript is injected into the host page, but its **CSS is not automatically loaded**. Tailwind utility classes that exist in the shell's CSS (from `@repo/ui` components) work fine. Classes unique to a remote's route component may not render correctly in the shell.
+Each remote's `vite.config.ts` has `bundleAllCSS: true` in its federation config. This tells the plugin to:
+1. Map each exposed module to its CSS files at build time
+2. Dynamically inject `<link>` tags into the host page when the module loads
 
-**Current workaround**: Use inline styles for remote-specific layout (e.g., `style={{ maxWidth: "42rem" }}`). For production, this should be solved by either loading the remote's CSS stylesheet explicitly or ensuring the shell's Tailwind config scans remote components.
+Without this flag (the default), the remote's CSS bundle exists but is never referenced — the shell only loads the JS. With it enabled, CSS loading is automatic and transparent.
 
 ### Remote dev mode requires pre-build
 

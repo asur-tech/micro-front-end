@@ -9,6 +9,7 @@ export default defineConfig({
     federation({
       name: "payroll",
       filename: "remoteEntry.js",
+      bundleAllCSS: true,
       exposes: {
         "./PayrollDetail": "./src/routes/payroll-detail",
         "./PayrollWidget": "./src/routes/payroll-widget",

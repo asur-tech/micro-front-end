@@ -35,7 +35,7 @@ export default function BillingDetail() {
   return (
     <div>
       <PageHeader title="Billing" subtitle={`Policy ${policyId}`} />
-      <div className="space-y-6" style={{ maxWidth: "42rem" }}>
+      <div className="max-w-2xl space-y-6">
         {invoices.map((inv, i) => (
           <div key={inv.id}>
             {i > 0 && <hr className="mb-6" />}

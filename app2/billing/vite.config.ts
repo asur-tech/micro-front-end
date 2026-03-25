@@ -9,6 +9,7 @@ export default defineConfig({
     federation({
       name: "billing",
       filename: "remoteEntry.js",
+      bundleAllCSS: true,
       exposes: {
         "./BillingDetail": "./src/routes/billing-detail",
         "./BillingWidget": "./src/routes/billing-widget",
