@@ -1,0 +1,48 @@
+{
+  "name": "@org/frontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start:shell": "cd shell && npx rspack serve",
+    "start:policy": "cd policy && npx rspack serve",
+    "start:payroll": "cd payroll && npx rspack serve",
+    "start:billing": "cd billing && npx rspack serve",
+    "start:claims": "cd claims && npx rspack serve",
+    "start:remotes": "concurrently -n policy,payroll,billing,claims -c blue,green,yellow,red \"npm run start:policy\" \"npm run start:payroll\" \"npm run start:billing\" \"npm run start:claims\"",
+    "dev": "concurrently -n remotes,shell -c yellow,green \"npm run start:remotes\" \"npm run start:shell\""
+  },
+  "devDependencies": {
+    "@module-federation/enhanced": "^0.21.6",
+    "@nx/js": "22.5.1",
+    "@nx/react": "^22.5.4",
+    "@nx/rspack": "^22.5.4",
+    "@rspack/cli": "^1.7.9",
+    "@rspack/core": "^1.7.9",
+    "@rspack/plugin-react-refresh": "^1.6.1",
+    "@swc-node/register": "1.11.1",
+    "@swc/core": "1.15.8",
+    "@swc/helpers": "0.5.18",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^9.2.1",
+    "css-loader": "^7.1.4",
+    "nx": "22.5.1",
+    "postcss": "^8.5.8",
+    "postcss-loader": "^8.2.1",
+    "prettier": "^2.6.2",
+    "react-refresh": "^0.18.0",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^4.2.1",
+    "tslib": "^2.3.0",
+    "typescript": "~5.9.2"
+  },
+  "workspaces": [
+    "shell",
+    "policy",
+    "payroll",
+    "billing",
+    "claims",
+    "libs/shared/*"
+  ]
+}

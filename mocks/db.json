@@ -1,0 +1,124 @@
+{
+  "policies": [
+    {
+      "id": "POL-001",
+      "policyId": "POL-001",
+      "holderName": "Acme Manufacturing Inc.",
+      "status": "active",
+      "effectiveDate": "2025-01-01",
+      "expirationDate": "2026-01-01",
+      "premium": 45000,
+      "type": "Workers Compensation"
+    },
+    {
+      "id": "POL-002",
+      "policyId": "POL-002",
+      "holderName": "BuildRight Construction LLC",
+      "status": "active",
+      "effectiveDate": "2025-03-15",
+      "expirationDate": "2026-03-15",
+      "premium": 78000,
+      "type": "Workers Compensation"
+    },
+    {
+      "id": "POL-003",
+      "policyId": "POL-003",
+      "holderName": "SafeHarbor Logistics",
+      "status": "pending",
+      "effectiveDate": "2025-06-01",
+      "expirationDate": "2026-06-01",
+      "premium": 32000,
+      "type": "Workers Compensation"
+    }
+  ],
+  "payroll": [
+    {
+      "id": "PAY-001",
+      "policyId": "POL-001",
+      "period": "Q1 2025",
+      "employeeCount": 142,
+      "totalWages": 1850000,
+      "reportedPremium": 11250,
+      "status": "approved"
+    },
+    {
+      "id": "PAY-002",
+      "policyId": "POL-001",
+      "period": "Q2 2025",
+      "employeeCount": 148,
+      "totalWages": 1920000,
+      "reportedPremium": 11680,
+      "status": "under_review"
+    },
+    {
+      "id": "PAY-003",
+      "policyId": "POL-002",
+      "period": "Q1 2025",
+      "employeeCount": 87,
+      "totalWages": 1200000,
+      "reportedPremium": 19500,
+      "status": "submitted"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "INV-001",
+      "policyId": "POL-001",
+      "amount": 11250,
+      "dueDate": "2025-04-15",
+      "status": "paid",
+      "issuedDate": "2025-03-15",
+      "description": "Q1 2025 Premium"
+    },
+    {
+      "id": "INV-002",
+      "policyId": "POL-001",
+      "amount": 11680,
+      "dueDate": "2025-07-15",
+      "status": "pending",
+      "issuedDate": "2025-06-15",
+      "description": "Q2 2025 Premium"
+    },
+    {
+      "id": "INV-003",
+      "policyId": "POL-002",
+      "amount": 19500,
+      "dueDate": "2025-04-15",
+      "status": "overdue",
+      "issuedDate": "2025-03-15",
+      "description": "Q1 2025 Premium"
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLM-001",
+      "policyId": "POL-001",
+      "claimantName": "John Smith",
+      "dateOfInjury": "2025-02-10",
+      "status": "open",
+      "description": "Back injury while lifting heavy equipment",
+      "amount": 15000,
+      "filedDate": "2025-02-12"
+    },
+    {
+      "id": "CLM-002",
+      "policyId": "POL-001",
+      "claimantName": "Maria Garcia",
+      "dateOfInjury": "2025-03-05",
+      "status": "under_investigation",
+      "description": "Repetitive strain injury — carpal tunnel",
+      "amount": 8500,
+      "filedDate": "2025-03-08"
+    },
+    {
+      "id": "CLM-003",
+      "policyId": "POL-002",
+      "claimantName": "Robert Johnson",
+      "dateOfInjury": "2025-01-20",
+      "status": "approved",
+      "description": "Fall from scaffolding — broken arm",
+      "amount": 42000,
+      "filedDate": "2025-01-22"
+    }
+  ]
+}
