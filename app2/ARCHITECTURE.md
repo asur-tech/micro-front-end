@@ -380,13 +380,13 @@ export default defineConfig({
   // because "@repo/ui" isn't a real npm package — it's a local folder.
   resolve: {
     alias: {
-      "@repo/types": resolve(__dirname, "../packages/types/src"),
+      "@repo/types": resolve(__dirname, "src/shared/types"),
       //  When code says:    import { Policy } from "@repo/types"
-      //  Vite resolves to:  /Users/.../app2/packages/types/src/index.ts
+      //  Vite resolves to:  /Users/.../app2/shell/src/shared/types/index.ts
 
-      "@repo/ui": resolve(__dirname, "../packages/ui/src"),
+      "@repo/ui": resolve(__dirname, "src/shared/ui"),
       //  When code says:    import { Card } from "@repo/ui"
-      //  Vite resolves to:  /Users/.../app2/packages/ui/src/index.ts
+      //  Vite resolves to:  /Users/.../app2/shell/src/shared/ui/index.ts
 
       "@": resolve(__dirname, "src"),
       //  When code says:    import { Sidebar } from "@/components/ui/sidebar"
@@ -471,11 +471,11 @@ export default defineConfig({
   ],
 
   // ── RESOLVE ──────────────────────────────────────────────
-  // Same alias pattern as shell — resolves @repo/* to local packages.
+  // Same alias pattern as shell — resolves @repo/* to shared code in the shell.
   resolve: {
     alias: {
-      "@repo/types": resolve(__dirname, "../packages/types/src"),
-      "@repo/ui": resolve(__dirname, "../packages/ui/src"),
+      "@repo/types": resolve(__dirname, "../shell/src/shared/types"),
+      "@repo/ui": resolve(__dirname, "../shell/src/shared/ui"),
       "@": resolve(__dirname, "src"),
     },
   },
@@ -735,7 +735,7 @@ Remote CSS files are simpler (no sidebar variables).
 ### The @source directive
 
 ```css
-@source "../../packages/ui/src/**/*.tsx";
+@source "../../shell/src/shared/ui/**/*.tsx";   /* in a remote's styles.css */
 @source "./routes/**/*.tsx";
 ```
 
@@ -772,8 +772,8 @@ Each app extends this and overrides `paths` relative to its own location:
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/types": ["../packages/types/src/index.ts"],
-      "@repo/ui": ["../packages/ui/src/index.ts"],
+      "@repo/types": ["../shell/src/shared/types/index.ts"],
+      "@repo/ui": ["../shell/src/shared/ui/index.ts"],
       "@/*": ["./src/*"]
     }
   },
@@ -838,7 +838,7 @@ This architecture enables team independence:
 Team A (Policy)        Team B (Payroll)       Platform Team
 ─────────────────      ─────────────────      ─────────────
 Works in policy/       Works in payroll/      Works in shell/
-                                              and packages/
+                                              (incl. shared/ code)
 
 Uses @repo/ui          Uses @repo/ui          Maintains @repo/ui
 Uses @repo/types       Uses @repo/types       Maintains @repo/types
