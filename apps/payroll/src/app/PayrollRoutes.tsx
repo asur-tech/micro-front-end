@@ -15,7 +15,7 @@ export default function PayrollRoutes() {
       body: JSON.stringify({
         query: `query GetPayroll($policyId: String!) {
           payroll(policyId: $policyId) {
-            id policyId period employeeCount totalWages reportedPremium status
+            id policyId periodStart periodEnd employeeCount totalWages reportedPremium status
           }
         }`,
         variables: { policyId },
@@ -34,7 +34,8 @@ export default function PayrollRoutes() {
           <Card key={record.id}>
             <CardContent>
               <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-                <DataField label="Period" value={record.period} />
+                <DataField label="Start Date" value={record.periodStart} />
+                <DataField label="End Date" value={record.periodEnd} />
                 <DataField label="Status" value={<Badge variant="secondary">{record.status.replace("_", " ")}</Badge>} />
                 <DataField label="Employees" value={record.employeeCount} />
                 <DataField label="Total Wages" value={`$${record.totalWages.toLocaleString()}`} />

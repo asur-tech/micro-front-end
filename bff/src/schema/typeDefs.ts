@@ -21,7 +21,8 @@ export const typeDefs = `#graphql
   type PayrollRecord {
     id: String!
     policyId: String!
-    period: String!
+    periodStart: String!
+    periodEnd: String!
     employeeCount: Int!
     totalWages: Float!
     reportedPremium: Float!

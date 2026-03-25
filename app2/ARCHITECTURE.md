@@ -828,6 +828,53 @@ npm run dev:shell
 
 The shell runs in Vite dev mode — changes to shell code hot-reload instantly. No rebuild needed.
 
+### Demo: One CSS change updates the entire portal
+
+The shell's `styles.css` defines the design tokens (colors, radius, spacing) as CSS custom properties. Every component — in the shell and in the remotes — uses these variables. Changing a variable in one place updates the look of the entire portal.
+
+**Demo 1: Change the primary color**
+
+1. Open [`shell/src/styles.css`](shell/src/styles.css)
+2. Find the `:root` block and change `--primary`:
+   ```css
+   /* Before: neutral dark */
+   --primary: oklch(0.205 0 0);
+
+   /* After: blue */
+   --primary: oklch(0.5 0.2 260);
+   ```
+3. The shell updates instantly (HMR) — sidebar active states, badges, and any `bg-primary` elements turn blue
+4. Rebuild remotes to pick up the same change in their CSS:
+   ```bash
+   npm run build:remotes
+   ```
+5. Refresh the page — remote components now also use the new blue primary
+
+**Demo 2: Change border radius globally**
+
+1. In `shell/src/styles.css`, change `--radius`:
+   ```css
+   /* Before: rounded */
+   --radius: 0.625rem;
+
+   /* After: sharp corners */
+   --radius: 0;
+   ```
+2. Every Card, Badge, Button, and input across the entire portal becomes square-cornered
+
+**Demo 3: Change a shared component**
+
+1. Edit [`shell/src/shared/ui/components/data-field.tsx`](shell/src/shared/ui/components/data-field.tsx) — for example, make the label uppercase:
+   ```tsx
+   <dt className="text-sm text-muted-foreground uppercase">{label}</dt>
+   ```
+2. Rebuild remotes: `npm run build:remotes`
+3. Every page that uses `<DataField>` (policy, payroll, billing, claims) now shows uppercase labels
+
+**Why this works:** All apps import from `@repo/ui` which resolves to `shell/src/shared/ui/`. The shell is the single source of truth for theming and shared components. Change it once, rebuild, and every remote picks it up.
+
+**Note:** Shell changes are instant (HMR). Remote changes require a rebuild because remotes serve pre-built files. In production with separate repos, the platform team would publish a new `@repo/ui` version and teams would upgrade.
+
 ---
 
 ## 13. How Independent Teams Work
@@ -1059,9 +1106,33 @@ Each remote's `vite.config.ts` has `bundleAllCSS: true` in its federation config
 
 Without this flag (the default), the remote's CSS bundle exists but is never referenced — the shell only loads the JS. With it enabled, CSS loading is automatic and transparent.
 
-### Remote dev mode requires pre-build
+### No HMR for remotes — rebuild required
 
-Unlike Rspack where all apps run dev servers simultaneously, Vite MF remotes must be built before they can be consumed. The `vite build --watch` command mitigates this, but changes aren't instant — there's a 2-4 second rebuild cycle.
+The shell and remotes have different dev modes:
+
+```
+Shell   → vite dev     → HMR works ✓  (edit a file, browser updates instantly)
+Remotes → vite build + vite preview → static files, no HMR ✗
+```
+
+When you edit a remote's source file (e.g., `payroll-detail.tsx`), the change is NOT reflected until you rebuild:
+
+```bash
+cd payroll && npx vite build    # manual rebuild (~4 sec)
+# then refresh the browser
+```
+
+**Why?** The `vite preview` server serves pre-built files from `dist/`. It doesn't watch source files or transform them on the fly like `vite dev` does. The `@module-federation/vite` plugin requires remotes to be built — they can't run in Vite's native ESM dev mode.
+
+**Workaround — watch mode:**
+
+```bash
+npm run watch:payroll    # runs vite build --watch, auto-rebuilds on save
+```
+
+This auto-rebuilds when you save a file (~3-4 second delay). The preview server picks up the new files on the next page load/navigation. Not instant like HMR, but avoids manual rebuild steps.
+
+**Shell changes are instant** — since the shell runs `vite dev`, editing `app-sidebar.tsx`, `app-layout.tsx`, or `dashboard.tsx` triggers HMR and the browser updates immediately.
 
 ### DTS type generation warnings
 

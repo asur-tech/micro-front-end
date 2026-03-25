@@ -9,7 +9,8 @@ export default function PayrollWidget({ payroll }: { payroll: PayrollRecord }) {
         <CardTitle>Latest Payroll</CardTitle>
       </CardHeader>
       <CardContent>
-        <DataField label="Period" value={payroll.period} />
+        <DataField label="Start Date" value={payroll.periodStart} />
+        <DataField label="End Date" value={payroll.periodEnd} />
         <DataField label="Employees" value={payroll.employeeCount} />
         <DataField label="Status" value={<Badge variant="secondary">{payroll.status.replace("_", " ")}</Badge>} />
         <DataField label="Premium" value={`$${payroll.reportedPremium.toLocaleString()}`} />

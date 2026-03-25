@@ -32,7 +32,8 @@ export default function PayrollWidget({
         <CardTitle>Latest Payroll</CardTitle>
       </CardHeader>
       <CardContent>
-        <DataField label="Period" value={payroll.period} />
+        <DataField label="Start Date" value={payroll.periodStart} />
+        <DataField label="End Date" value={payroll.periodEnd} />
         <DataField label="Employees" value={payroll.employeeCount} />
         <DataField
           label="Status"

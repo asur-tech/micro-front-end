@@ -35,7 +35,8 @@
     {
       "id": "PAY-001",
       "policyId": "POL-001",
-      "period": "Q1 2025",
+      "periodStart": "2025-01-01",
+      "periodEnd": "2025-01-31",
       "employeeCount": 142,
       "totalWages": 1850000,
       "reportedPremium": 11250,
@@ -44,7 +45,8 @@
     {
       "id": "PAY-002",
       "policyId": "POL-001",
-      "period": "Q2 2025",
+      "periodStart": "2025-02-01",
+      "periodEnd": "2025-02-28",
       "employeeCount": 148,
       "totalWages": 1920000,
       "reportedPremium": 11680,
@@ -53,7 +55,8 @@
     {
       "id": "PAY-003",
       "policyId": "POL-002",
-      "period": "Q1 2025",
+      "periodStart": "2025-03-01",
+      "periodEnd": "2025-03-31",
       "employeeCount": 87,
       "totalWages": 1200000,
       "reportedPremium": 19500,

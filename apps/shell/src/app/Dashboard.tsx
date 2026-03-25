@@ -20,7 +20,7 @@ export default function Dashboard() {
         query: `query Dashboard($policyId: String!) {
           dashboard(policyId: $policyId) {
             policy { policyId holderName status effectiveDate expirationDate premium type }
-            recentPayroll { id policyId period employeeCount totalWages reportedPremium status }
+            recentPayroll { id policyId periodStart periodEnd employeeCount totalWages reportedPremium status }
             recentInvoices { id policyId amount dueDate status description }
             openClaims { id policyId claimantName dateOfInjury status description amount }
           }

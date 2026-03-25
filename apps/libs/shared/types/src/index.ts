@@ -11,7 +11,8 @@ export interface Policy {
 export interface PayrollRecord {
   id: string;
   policyId: string;
-  period: string;
+  periodStart: string;
+  periodEnd: string;
   employeeCount: number;
   totalWages: number;
   reportedPremium: number;

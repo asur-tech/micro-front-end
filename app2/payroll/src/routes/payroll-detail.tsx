@@ -21,7 +21,7 @@ export default function PayrollDetail() {
       body: JSON.stringify({
         query: `query GetPayroll($policyId: String!) {
           payroll(policyId: $policyId) {
-            id policyId period employeeCount totalWages reportedPremium status
+            id policyId periodStart periodEnd employeeCount totalWages reportedPremium status
           }
         }`,
         variables: { policyId },
@@ -42,7 +42,8 @@ export default function PayrollDetail() {
             <Card>
             <CardContent>
               <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-                <DataField label="Period" value={record.period} />
+                <DataField label="Start Date" value={record.periodStart} />
+                <DataField label="End Date" value={record.periodEnd} />
                 <DataField
                   label="Status"
                   value={
