@@ -28,13 +28,14 @@ export default defineConfig({
 
   devServer: {
     port: 3000, // Shell always runs on port 3000
-    hot: true,  // Hot Module Replacement for fast dev
+    hot: true, // Hot Module Replacement for fast dev
     // historyApiFallback: tells the dev server to serve index.html for all routes.
     // Without this, refreshing on /policy/POL-001 would return a 404
     // because there's no actual file at that path — React Router handles it client-side.
     historyApiFallback: true,
     // Allow remotes (on different ports) to fetch chunks from this server
     headers: { 'Access-Control-Allow-Origin': '*' },
+    watchFiles: [resolve(__dirname, '../libs/shared/**/*')],
   },
 
   resolve: {
@@ -43,7 +44,10 @@ export default defineConfig({
     // These map to the same paths defined in tsconfig.base.json.
     alias: {
       '@org/shared-types': resolve(__dirname, '../libs/shared/types/src'),
-      '@org/shared-design-system': resolve(__dirname, '../libs/shared/design-system/src'),
+      '@org/shared-design-system': resolve(
+        __dirname,
+        '../libs/shared/design-system/src'
+      ),
     },
   },
 
@@ -122,7 +126,11 @@ export default defineConfig({
       shared: {
         react: { singleton: true, requiredVersion: false, eager: false },
         'react-dom': { singleton: true, requiredVersion: false, eager: false },
-        'react-router-dom': { singleton: true, requiredVersion: false, eager: false },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: false,
+          eager: false,
+        },
       },
     }),
   ],

@@ -11,12 +11,16 @@ export default defineConfig({
     hot: true,
     historyApiFallback: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
+    watchFiles: [resolve(__dirname, '../libs/shared/**/*')],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '@org/shared-types': resolve(__dirname, '../libs/shared/types/src'),
-      '@org/shared-design-system': resolve(__dirname, '../libs/shared/design-system/src'),
+      '@org/shared-design-system': resolve(
+        __dirname,
+        '../libs/shared/design-system/src'
+      ),
     },
   },
   module: {
@@ -52,7 +56,11 @@ export default defineConfig({
       shared: {
         react: { singleton: true, requiredVersion: false, eager: false },
         'react-dom': { singleton: true, requiredVersion: false, eager: false },
-        'react-router-dom': { singleton: true, requiredVersion: false, eager: false },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: false,
+          eager: false,
+        },
       },
     }),
   ],

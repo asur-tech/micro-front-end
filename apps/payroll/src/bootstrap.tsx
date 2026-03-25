@@ -9,7 +9,10 @@ function StandaloneApp() {
       <div className="p-6">
         <Routes>
           <Route path="/policy/:policyId/payroll" element={<PayrollRoutes />} />
-          <Route path="*" element={<div>Payroll Remote — standalone dev mode</div>} />
+          <Route
+            path="*"
+            element={<div>Payroll Remote — standalone dev mode</div>}
+          />
         </Routes>
       </div>
     </BrowserRouter>

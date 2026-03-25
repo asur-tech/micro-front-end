@@ -1,29 +1,22 @@
-import React from 'react';
-import { Card, DataField, Badge } from '../../../libs/shared/design-system/src';
-import type { Claim } from '../../../libs/shared/types/src';
+import React from "react";
+import { Card, CardHeader, CardTitle, CardContent, Badge, DataField } from "@org/shared-design-system";
+import type { Claim } from "@org/shared-types";
 
-interface Props {
-  claims: Claim[];
-}
-
-export default function ClaimsWidget({ claims }: Props) {
-  if (claims.length === 0) {
-    return (
-      <Card title="Claims" accent="red">
-        <p className="text-gray-400 text-sm">No open claims</p>
-      </Card>
-    );
-  }
-
+export default function ClaimsWidget({ claims }: { claims: Claim[] }) {
   return (
-    <Card title="Open Claims" accent="red">
-      <DataField label="Count" value={claims.length} />
-      {claims.map((c) => (
-        <div key={c.id} className="mt-2 border-t border-gray-100 pt-2">
-          <DataField label={c.id} value={<Badge label={c.status.replace('_', ' ')} variant="warning" />} />
-          <DataField label="Description" value={c.description} />
-        </div>
-      ))}
+    <Card>
+      <CardHeader>
+        <CardTitle>Open Claims</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <DataField label="Count" value={claims.length} />
+        {claims.map((c) => (
+          <div key={c.id} className="mt-2 border-t pt-2">
+            <DataField label={c.id} value={<Badge variant="outline">{c.status.replace("_", " ")}</Badge>} />
+            <DataField label="Description" value={c.description} />
+          </div>
+        ))}
+      </CardContent>
     </Card>
   );
 }

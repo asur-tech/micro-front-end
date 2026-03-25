@@ -1,7 +1,9 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import { ApolloServer } from '@apollo/server';
-import fastifyApollo, { fastifyApolloDrainPlugin } from '@as-integrations/fastify';
+import fastifyApollo, {
+  fastifyApolloDrainPlugin,
+} from '@as-integrations/fastify';
 import { typeDefs } from './schema/typeDefs';
 import { resolvers } from './schema/resolvers';
 

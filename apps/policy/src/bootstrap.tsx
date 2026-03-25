@@ -26,7 +26,10 @@ function StandaloneApp() {
       <div className="p-6">
         <Routes>
           <Route path="/policy/:policyId" element={<PolicyRoutes />} />
-          <Route path="*" element={<div>Policy Remote — standalone dev mode</div>} />
+          <Route
+            path="*"
+            element={<div>Policy Remote — standalone dev mode</div>}
+          />
         </Routes>
       </div>
     </BrowserRouter>

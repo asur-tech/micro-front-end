@@ -9,14 +9,6 @@ const PayrollRoutes = React.lazy(() => import('payroll/PayrollRoutes'));
 const BillingRoutes = React.lazy(() => import('billing/BillingRoutes'));
 const ClaimsRoutes = React.lazy(() => import('claims/ClaimsRoutes'));
 
-function LoadingFallback() {
-  return (
-    <div className="flex items-center justify-center h-64">
-      <div className="text-gray-400">Loading module...</div>
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -26,7 +18,7 @@ export default function App() {
           <Route
             path="/policy/:policyId"
             element={
-              <Suspense fallback={<LoadingFallback />}>
+              <Suspense>
                 <PolicyRoutes />
               </Suspense>
             }
@@ -34,7 +26,7 @@ export default function App() {
           <Route
             path="/policy/:policyId/payroll"
             element={
-              <Suspense fallback={<LoadingFallback />}>
+              <Suspense>
                 <PayrollRoutes />
               </Suspense>
             }
@@ -42,7 +34,7 @@ export default function App() {
           <Route
             path="/policy/:policyId/billing"
             element={
-              <Suspense fallback={<LoadingFallback />}>
+              <Suspense>
                 <BillingRoutes />
               </Suspense>
             }
@@ -50,7 +42,7 @@ export default function App() {
           <Route
             path="/policy/:policyId/claims"
             element={
-              <Suspense fallback={<LoadingFallback />}>
+              <Suspense>
                 <ClaimsRoutes />
               </Suspense>
             }

@@ -29,22 +29,27 @@ export const resolvers = {
     },
 
     dashboard: async (_: any, { policyId }: { policyId: string }) => {
-      const [policyResult, payroll, invoicesData, claimsData] = await Promise.allSettled([
-        fetchJson(`${API}/policies/${policyId}`),
-        fetchJson(`${API}/payroll?policyId=${policyId}`),
-        fetchJson(`${API}/invoices?policyId=${policyId}`),
-        fetchJson(`${API}/claims?policyId=${policyId}`),
-      ]);
+      const [policyResult, payroll, invoicesData, claimsData] =
+        await Promise.allSettled([
+          fetchJson(`${API}/policies/${policyId}`),
+          fetchJson(`${API}/payroll?policyId=${policyId}`),
+          fetchJson(`${API}/invoices?policyId=${policyId}`),
+          fetchJson(`${API}/claims?policyId=${policyId}`),
+        ]);
 
       const rawPayroll = payroll.status === 'fulfilled' ? payroll.value : [];
-      const rawInvoices = invoicesData.status === 'fulfilled' ? invoicesData.value : [];
-      const rawClaims = claimsData.status === 'fulfilled' ? claimsData.value : [];
+      const rawInvoices =
+        invoicesData.status === 'fulfilled' ? invoicesData.value : [];
+      const rawClaims =
+        claimsData.status === 'fulfilled' ? claimsData.value : [];
 
       return {
         policy: policyResult.status === 'fulfilled' ? policyResult.value : null,
         recentPayroll: rawPayroll[0] || null,
         recentInvoices: rawInvoices,
-        openClaims: rawClaims.filter((c: any) => c.status === 'open' || c.status === 'under_investigation'),
+        openClaims: rawClaims.filter(
+          (c: any) => c.status === 'open' || c.status === 'under_investigation',
+        ),
       };
     },
   },
