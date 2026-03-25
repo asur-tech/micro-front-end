@@ -19,7 +19,6 @@
     "baseUrl": ".",
     "paths": {
       "@org/shared-types": ["libs/shared/types/src/index.ts"],
-      "@org/shared-auth": ["libs/shared/auth/src/index.ts"],
       "@org/shared-design-system": ["libs/shared/design-system/src/index.ts"]
     }
   }

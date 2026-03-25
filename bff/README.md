@@ -1,6 +1,6 @@
 # BFF — Backend for Frontend
 
-GraphQL gateway that sits between the frontend and backend services. Handles auth, protocol translation, and field-level data filtering per user role.
+GraphQL gateway between frontend and mock API.
 
 ## Dev
 
@@ -9,15 +9,12 @@ npm install
 npm start    # starts on port 4000
 ```
 
-> Requires mock servers (`mocks/mock-servers`) running on ports 4010–4013.
+> Requires mock server (`mocks/`) running on port 4010.
 
 ## Architecture
 
 ```
-Frontend → BFF (GraphQL, :4000) → Policy backend  (GraphQL, :4010)
-                                 → Payroll backend (REST,    :4011)
-                                 → Billing backend (REST,    :4012)
-                                 → Claims backend  (REST,    :4013)
+Frontend → BFF (GraphQL, :4000) → json-server (REST, :4010)
 ```
 
 ## Stack
