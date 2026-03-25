@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "**/.mf": true,
+    "**/.__mf__temp": true,
+    "**/dist": true,
+    "**/node_modules": true
+  }
+}

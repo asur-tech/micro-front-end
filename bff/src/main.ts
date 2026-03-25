@@ -21,9 +21,9 @@ async function start() {
   await apollo.start();
   await app.register(fastifyApollo(apollo));
 
-  await app.listen({ port: 4000, host: '0.0.0.0' });
-  console.log('BFF running on http://localhost:4000');
-  console.log('GraphQL playground at http://localhost:4000/graphql');
+  await app.listen({ port: 4005, host: '0.0.0.0' });
+  console.log('BFF running on http://localhost:4005');
+  console.log('GraphQL playground at http://localhost:4005/graphql');
 }
 
 start().catch(console.error);

@@ -1,0 +1,53 @@
+{
+  "name": "@repo/root",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "shell",
+    "policy",
+    "payroll",
+    "billing",
+    "claims"
+  ],
+  "scripts": {
+    "dev:shell": "cd shell && npx vite",
+    "build:policy": "cd policy && npx vite build",
+    "build:payroll": "cd payroll && npx vite build",
+    "build:billing": "cd billing && npx vite build",
+    "build:claims": "cd claims && npx vite build",
+    "preview:policy": "cd policy && npx vite preview --port 4001",
+    "preview:payroll": "cd payroll && npx vite preview --port 4002",
+    "preview:billing": "cd billing && npx vite preview --port 4003",
+    "preview:claims": "cd claims && npx vite preview --port 4004",
+    "build:remotes": "concurrently \"npm run build:policy\" \"npm run build:payroll\" \"npm run build:billing\" \"npm run build:claims\"",
+    "preview:remotes": "concurrently -n policy,payroll,billing,claims -c blue,green,yellow,red \"npm run preview:policy\" \"npm run preview:payroll\" \"npm run preview:billing\" \"npm run preview:claims\"",
+    "start:bff": "cd ../bff && npm start",
+    "start:mocks": "cd ../mocks && npm start",
+    "dev": "npm run build:remotes && concurrently -n bff,mocks,remotes,shell -c cyan,magenta,yellow,green \"npm run start:bff\" \"npm run start:mocks\" \"npm run preview:remotes\" \"npm run dev:shell\"",
+    "watch:policy": "cd policy && npx vite build --watch",
+    "watch:payroll": "cd payroll && npx vite build --watch",
+    "watch:billing": "cd billing && npx vite build --watch",
+    "watch:claims": "cd claims && npx vite build --watch"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "^1.13.4",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.5.2",
+    "concurrently": "^9.2.1",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.2",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.6.0",
+    "radix-ui": "^1.4.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.1",
+    "tailwind-merge": "^3.5.0"
+  }
+}

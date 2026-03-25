@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/types": ["../shell/src/shared/types/index.ts"],
+      "@repo/ui": ["../shell/src/shared/ui/index.ts"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
